@@ -30,15 +30,22 @@ class Client(asyncore.dispatcher_with_send):
         if line != "":
           c,p = line.split( )
           print line.split( )
-          s = int(p) - 100
           if c == 'lt':
-              self.send('ok\n')
+              self.send('\n')
               print 'motor left ', p
-              pz.setMotor(0, s)
+              sl = int(p) - 100
+              pz.setMotor(0, sl)
           elif c == 'rt':
-              self.send('ok\n')
+              self.send('\n')
               print 'motor right ', p
-              pz.setMotor(1, s)
+              sr = int(p) - 100
+              pz.setMotor(1, sr)
+          elif c = 'rdlt'
+              answer = 'rdlt ' + str(sl+100) + '\n'
+              self.send(answer)
+          elif c = 'rdrt'
+              answer = 'rdrt ' + str(sr+100) + '\n'
+              self.send(answer)
           else:
               self.send('unknown command\n')
               print 'Unknown command:', line
