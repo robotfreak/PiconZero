@@ -37,7 +37,7 @@ def init():
 	print(rev[0], rev[1])
 	hcsr04.init()
 
-def run()
+def run():
 	    distance = int(hcsr04.getDistance())
 	    while (distance > 10):
 	        distance = int(hcsr04.getDistance())
@@ -56,7 +56,7 @@ def run()
 			pz.forward(speed)	
 
 
-def cleanup()
+def cleanup():
 	    pz.cleanup()
 	    hcsr04.cleanup()
 
