@@ -4,6 +4,8 @@
 
 import piconzero as pz, hcsr04, time
 
+speed = 60
+
 def distance2Pixel(dist):
         pz.setAllPixels(0,0,0)
 	if (dist > 80):
@@ -25,7 +27,6 @@ def distance2Pixel(dist):
 		pz.setPixel(i,red,green,blue)
 
 def init():
-	speed = 60
 
 	print("Simple obstacle avoider")	
 	print("Press Ctrl-C to end")
