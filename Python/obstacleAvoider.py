@@ -8,13 +8,13 @@ speed = 60
 
 def distance2Pixel(dist):
 	pz.setAllPixels(0,0,0)
-	if (dist > 80):
+	if dist > 80:
 		dist = 80
-	if (dist < 15):
+	if dist < 15:
 		green = 0
 		red = 255
 		blue = 0
-	elif (dist < 30):
+	elif dist < 30:
 		green = 165
 		red = 255
 		blue = 0
@@ -47,14 +47,17 @@ def run():
 		distance = int(hcsr04.getDistance())
 		print "Distance:", distance
 		distance2Pixel(distance) 
-		if (distance < 10):
+		if distance < 10:
 			pz.stop()
 			time.sleep(1)
-			while (distance <= 15):
+			while (distance < 18):
 				distance = int(hcsr04.getDistance())
-				pz.spinLeft(speed);
+				pz.spinLeft(speed)
+		elif distance < 25:
+			pz.forward(speed-20)
 		else:
 			pz.forward(speed)	
+		time.sleep(0.1)
 
 
 def cleanup():
@@ -67,7 +70,6 @@ def main():
 	init()
 	try:
 		run()
-		time.sleep(0.1)
 
 	except KeyboardInterrupt:
 		print()
