@@ -7,7 +7,7 @@ import piconzero as pz, hcsr04, time
 speed = 60
 
 def distance2Pixel(dist):
-        pz.setAllPixels(0,0,0)
+	pz.setAllPixels(0,0,0)
 	if (dist > 80):
 		dist = 80
 	if (dist < 15):
@@ -23,7 +23,7 @@ def distance2Pixel(dist):
 		red = 0
 		blue = 0
 
-        for i in range(8-dist/10):
+	for i in range(8-dist/10):
 		pz.setPixel(i,red,green,blue)
 
 def init():
@@ -39,14 +39,14 @@ def init():
 	hcsr04.init()
 
 def run():
-    distance = int(hcsr04.getDistance())
-    while (distance > 10):
-        distance = int(hcsr04.getDistance())
-        pz.stop()
-    while True:
-       	distance = int(hcsr04.getDistance())
-       	print "Distance:", distance
-        distance2Pixel(distance) 
+	distance = int(hcsr04.getDistance())
+	while (distance > 10):
+		distance = int(hcsr04.getDistance())
+		pz.stop()
+	while True:
+		distance = int(hcsr04.getDistance())
+		print "Distance:", distance
+		distance2Pixel(distance) 
 		if (distance < 10):
 			pz.stop()
 			time.sleep(1)
@@ -69,11 +69,11 @@ def main():
 		run()
 		time.sleep(0.1)
 
-    except KeyboardInterrupt:
-        print()
+	except KeyboardInterrupt:
+		print()
 
-    finally:
-        cleanup()
+	finally:
+		cleanup()
 
 if __name__== "__main__":
 	main()
