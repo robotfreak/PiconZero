@@ -40,6 +40,8 @@ class Client(asyncore.dispatcher_with_send):
               print answer
           elif line == 'rdus':
               us = int(hcsr04.getDistance())
+              if us > 100:
+                  us = 100
               answer = 'rdus ' + str(us) + '\n'
               self.send(answer)
               print answer
