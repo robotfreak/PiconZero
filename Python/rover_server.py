@@ -33,13 +33,16 @@ class Client(asyncore.dispatcher_with_send):
           if line == 'rdlt':
               answer = 'rdlt ' + str(sl+100) + '\n'
               self.send(answer)
+              print answer
           elif line == 'rdrt':
               answer = 'rdrt ' + str(sr+100) + '\n'
               self.send(answer)
+              print answer
           elif line == 'rdus':
               us = int(hcsr04.getDistance())
               answer = 'rdus ' + str(us) + '\n'
               self.send(answer)
+              print answer
           else:
               c,p = line.split( )
               print line.split( )
