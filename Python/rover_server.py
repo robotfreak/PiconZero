@@ -1,7 +1,7 @@
 import asyncore
 import socket
 import select
-
+import piconzero as pz, hcsr04, time
 
 class Client(asyncore.dispatcher_with_send):
     def __init__(self, socket=None, pollster=None):
@@ -34,9 +34,11 @@ class Client(asyncore.dispatcher_with_send):
           if c == 'lt':
               self.send('ok\n')
               print 'motor left ', p
+              pz.setMotor(0, s)
           elif c == 'rt':
               self.send('ok\n')
               print 'motor right ', p
+              pz.setMotor(1, s)
           else:
               self.send('unknown command\n')
               print 'Unknown command:', line
@@ -97,6 +99,10 @@ class EPoll(object):
 if __name__ == "__main__":
     pollster = EPoll()
     pollster.register(Server(("",54321),pollster), select.EPOLLIN)
+    pz.init()
+    pz.setOutputConfig(5, 3)    # set output 5 to WS2812
+    hcsr04.init()
+
     while True:
         evt = pollster.poll()
         for obj, flags in evt:
