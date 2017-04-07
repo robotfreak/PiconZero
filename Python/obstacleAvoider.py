@@ -39,18 +39,18 @@ def init():
 	hcsr04.init()
 
 def run():
-	    distance = int(hcsr04.getDistance())
-	    while (distance > 10):
-	        distance = int(hcsr04.getDistance())
-	        pz.stop()
-	    while True:
-	        distance = int(hcsr04.getDistance())
-	        print "Distance:", distance
-	        distance2Pixel(distance) 
-		if (distance <= 15):
+    distance = int(hcsr04.getDistance())
+    while (distance > 10):
+        distance = int(hcsr04.getDistance())
+        pz.stop()
+    while True:
+       	distance = int(hcsr04.getDistance())
+       	print "Distance:", distance
+        distance2Pixel(distance) 
+		if (distance < 10):
 			pz.stop()
 			time.sleep(1)
-			while (distance <= 25):
+			while (distance <= 15):
 				distance = int(hcsr04.getDistance())
 				pz.spinLeft(speed);
 		else:
@@ -58,8 +58,8 @@ def run():
 
 
 def cleanup():
-	    pz.cleanup()
-	    hcsr04.cleanup()
+	pz.cleanup()
+	hcsr04.cleanup()
 
 
 def main():
@@ -69,8 +69,11 @@ def main():
 		run()
 		time.sleep(0.1)
 
-	finally:
-	    cleanup()
+    except KeyboardInterrupt:
+        print()
+
+    finally:
+        cleanup()
 
 if __name__== "__main__":
 	main()
