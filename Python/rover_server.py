@@ -40,10 +40,10 @@ class Client(asyncore.dispatcher_with_send):
               print 'motor right ', p
               sr = int(p) - 100
               pz.setMotor(1, sr)
-          elif c = 'rdlt'
+          elif c = 'rdlt':
               answer = 'rdlt ' + str(sl+100) + '\n'
               self.send(answer)
-          elif c = 'rdrt'
+          elif c = 'rdrt':
               answer = 'rdrt ' + str(sr+100) + '\n'
               self.send(answer)
           else:
