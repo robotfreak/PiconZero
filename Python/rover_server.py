@@ -28,6 +28,8 @@ class Client(asyncore.dispatcher_with_send):
 
     def handle_command(self, line):
         if line != "":
+          sl = 0
+          sr = 0
           if line == 'rdlt':
               answer = 'rdlt ' + str(sl+100) + '\n'
               self.send(answer)
