@@ -69,7 +69,7 @@ def main():
 		time.sleep(0.1)
 
 	finally:
-	    cleanu()
+	    cleanup()
 
 if __name__== "__main__":
 	main()
