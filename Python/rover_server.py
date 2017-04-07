@@ -28,27 +28,28 @@ class Client(asyncore.dispatcher_with_send):
 
     def handle_command(self, line):
         if line != "":
-          c,p = line.split( )
-          print line.split( )
-          if c == 'lt':
-              self.send('\n')
-              print 'motor left ', p
-              sl = int(p) - 100
-              pz.setMotor(0, sl)
-          elif c == 'rt':
-              self.send('\n')
-              print 'motor right ', p
-              sr = int(p) - 100
-              pz.setMotor(1, sr)
-          elif c == 'rdlt':
+          if line == 'rdlt':
               answer = 'rdlt ' + str(sl+100) + '\n'
               self.send(answer)
-          elif c == 'rdrt':
+          elif line == 'rdrt':
               answer = 'rdrt ' + str(sr+100) + '\n'
               self.send(answer)
           else:
-              self.send('unknown command\n')
-              print 'Unknown command:', line
+              c,p = line.split( )
+              print line.split( )
+              if c == 'lt':
+                  self.send('\n')
+                  print 'motor left ', p
+                  sl = int(p) - 100
+                  pz.setMotor(0, sl)
+              elif c == 'rt':
+                  self.send('\n')
+                  print 'motor right ', p
+                  sr = int(p) - 100
+                  pz.setMotor(1, sr)
+              else:
+                  self.send('unknown command\n')
+                  print 'Unknown command:', line
 
 
 class Server(asyncore.dispatcher):
