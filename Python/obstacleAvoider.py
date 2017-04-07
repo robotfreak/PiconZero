@@ -24,8 +24,7 @@ def distance2Pixel(dist):
         for i in range(8-dist/10):
 		pz.setPixel(i,red,green,blue)
 
-def main():
-
+def init():
 	speed = 60
 
 	print("Simple obstacle avoider")	
@@ -38,7 +37,7 @@ def main():
 	print(rev[0], rev[1])
 	hcsr04.init()
 
-	try:
+def run()
 	    distance = int(hcsr04.getDistance())
 	    while (distance > 10):
 	        distance = int(hcsr04.getDistance())
@@ -56,11 +55,21 @@ def main():
 		else:
 			pz.forward(speed)	
 
+
+def cleanup()
+	    pz.cleanup()
+	    hcsr04.cleanup()
+
+
+def main():
+
+	init()
+	try:
+		run()
 		time.sleep(0.1)
 
 	finally:
-	    pz.cleanup()
-	    hcsr04.cleanup()
+	    cleanu()
 
 if __name__== "__main__":
 	main()
